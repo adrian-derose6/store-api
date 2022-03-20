@@ -6,6 +6,15 @@ export const getAllProductsStatic = async (req, res) => {
 };
 
 export const getAllProducts = async (req, res) => {
-	const products = await Product.find(req.query);
+	const { featured } = req.query;
+	let queryObject = {};
+
+	if (featured) {
+		queryObject.featured = featured === 'true';
+	}
+
+	console.log(queryObject);
+
+	const products = await Product.find(queryObject);
 	res.status(200).json({ products, nbHits: products.length });
 };
