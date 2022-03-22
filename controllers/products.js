@@ -48,8 +48,6 @@ export const getAllProducts = async (req, res) => {
 		});
 	}
 
-	//console.log(queryObject);
-
 	let result = Product.find(queryObject);
 	// sort
 	if (sort) {
